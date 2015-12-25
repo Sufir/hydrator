@@ -62,13 +62,13 @@ final class Instantiator implements InstantiatorInterface
         }
 
         if (!class_exists($className)) {
-            throw InvalidArgumentException("Class «{$className}» not found");
+            throw new InvalidArgumentException("Class «{$className}» not found");
         }
 
         $reflection = new ReflectionClass($className);
 
         if ($reflection->isAbstract()) {
-            throw InvalidArgumentException("Cannot instantiate abstract class «{$className}»");
+            throw new InvalidArgumentException("Cannot instantiate abstract class «{$className}»");
         }
 
         return $reflection;

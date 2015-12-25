@@ -8,10 +8,11 @@
 
 namespace Sufir\Hydrator;
 
+use InvalidArgumentException;
 /**
  * HydratorInterface
  *
- * Description of HydratorInterface
+ * Обеспечивает наполнение и извлечение данных из объекта.
  *
  * @author Sklyarov Alexey <sufir@mihailovka.info>
  * @package Sufir\Hydrator
@@ -26,6 +27,7 @@ interface HydratorInterface
      * @param array $data
      * @param object|string $object
      * @return object
+     * @throws InvalidArgumentException
      */
     public function hydrate(array $data, $object);
 
