@@ -1,0 +1,27 @@
+{
+    "name": "sufir/hydrator",
+    "description": "Создание и гидрация объектов",
+    "keywords": [
+        "hydrator",
+        "instantiator",
+        "constructor",
+        "mapper"
+    ],
+    "homepage": "https://github.com/Sufir/hydrator",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Sufir",
+            "email": "sufir@mihailovka.info"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sufir\\Hydrator\\": "src"
+        }
+    }
+}
