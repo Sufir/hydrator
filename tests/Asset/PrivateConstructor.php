@@ -10,6 +10,7 @@ namespace Sufir\Hydrator\Test\Asset;
 use BadMethodCallException;
 use Sufir\Hydrator\Test\Asset\PrivateConstructor\Identity;
 use Sufir\Hydrator\Test\Asset\UncloneableClass;
+use DateInterval;
 use stdClass;
 
 class PrivateConstructor
@@ -42,7 +43,13 @@ class PrivateConstructor
     /**
      * @var stdClass
      */
-    protected $stdClass;
+    //protected $stdClass;
+
+    /**
+     *
+     * @var DateInterval
+     */
+    //protected $age;
 
     /**
      * @return Identity
@@ -79,8 +86,16 @@ class PrivateConstructor
     /**
      * @return stdClass
      */
-    function getStdClass()
+    /*function getStdClass()
     {
         return $this->stdClass;
-    }
+    }*/
+
+    /**
+     * @return DateInterval
+     */
+    /*function getAge()
+    {
+        return $this->age;
+    }*/
 }

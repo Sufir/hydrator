@@ -19,6 +19,7 @@ use InvalidArgumentException;
  * Обеспечивает наполнение и извлечение данных из объекта.
  *
  * @todo refactoring
+ * @todo hedrate and extraction internal classes
  * @author Sklyarov Alexey <sufir@mihailovka.info>
  * @package Sufir\Hydrator
  */
@@ -128,26 +129,18 @@ class PlainArrayHydrator implements HydratorInterface
     {
         $reflection = new ReflectionClass($className);
 
-        if($reflection->isUserDefined()) {
-            return Closure::bind(function ($object, $data) {
-                foreach ($data as $property => $value) {
-                    if (property_exists($object, $property)) {
-                        $object->{$property} = $value;
-                    }
-                }
-            }, null, $className);
-        } else {
-            return function ($object, $data) {
-                $reflection = new ReflectionObject($object);
-
-                foreach ($data as $propertyName => $value) {
-                    if ($reflection->hasProperty($propertyName)) {
-                        $property = $reflection->getProperty($propertyName);
-                        $property->setAccessible(true);
-                        $property->setValue($object, $value);
-                    }
-                }
-            };
+        if (!$reflection->isUserDefined()) {
+            throw new InvalidArgumentException(
+                "Cannot hydrate internal class «{$className}»"
+            );
         }
+
+        return Closure::bind(function ($object, $data) {
+            foreach ($data as $property => $value) {
+                if (property_exists($object, $property)) {
+                    $object->{$property} = $value;
+                }
+            }
+        }, null, $className);
     }
 }

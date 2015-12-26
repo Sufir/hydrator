@@ -32,10 +32,12 @@ class PlainArrayHydrator extends \PHPUnit_Framework_TestCase
         'firstName' => 'John',
         'lastName' => 'Doe',
         '__identity:Identity_id' => 100500,
-        '__stdClass:\stdClass_unknownProperty' => '!undefined',
         '__uncloneableClass:\Sufir\Hydrator\Test\Asset\UncloneableClass_someProperty1' => 'value 1',
         '__uncloneableClass:\Sufir\Hydrator\Test\Asset\UncloneableClass_someProperty2' => null,
         '__uncloneableClass:\Sufir\Hydrator\Test\Asset\UncloneableClass_unknownProperty' => '!undefined',
+        // @todo
+        //'__age:\DateInterval_y' => 30,
+        //'__stdClass:\stdClass_unknownProperty' => '!undefined',
     ];
 
     protected function setUp()
@@ -57,7 +59,7 @@ class PlainArrayHydrator extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf(Identity::class, $object->getIdentity());
         $this->assertInstanceOf(UncloneableClass::class, $object->getUncloneableClass());
-        $this->assertInstanceOf(stdClass::class, $object->getStdClass());
+        //$this->assertInstanceOf(stdClass::class, $object->getStdClass());
 
         $this->assertEquals($data['__identity:Identity_id'], $object->getIdentity()->getValue());
         $this->assertEquals($data['firstName'], $object->getFirstName());
@@ -73,18 +75,23 @@ class PlainArrayHydrator extends \PHPUnit_Framework_TestCase
             $object->getUncloneableClass()
         );
 
-        $this->assertFalse(property_exists($object->getStdClass(), 'unknownProperty'));
+        //$this->assertFalse(property_exists($object->getStdClass(), 'unknownProperty'));
         $this->assertFalse(property_exists($object->getUncloneableClass(), 'unknownProperty'));
 
         return $object;
     }
 
     /**
+     * @param PrivateConstructor $object
      * @depends testHydratye
      */
     public function testExtract($object)
     {
         $data = $this->hydrator->extract($object);
+
+        /*echo "\n-------------------------------------------\n";
+        var_dump($object, $data, $object->getAge()->days);
+        echo "\n-------------------------------------------\n";*/
 
         $expected = [];
         foreach ($this->hydrateData as $prop => $value) {
@@ -105,6 +112,21 @@ class PlainArrayHydrator extends \PHPUnit_Framework_TestCase
             'firstName' => 'John',
             'lastName' => 'Doe',
             '__identityIdentity_id' => 100500,
+        ];
+
+        $this->hydrator->hydrate($data, $this->hydrateClass);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testInternalClass()
+    {
+        $data = [
+            'firstName' => 'John',
+            'lastName' => 'Doe',
+            '__age:\DateInterval_y' => 30,
+            '__stdClass:\stdClass_unknownProperty' => '!undefined',
         ];
 
         $this->hydrator->hydrate($data, $this->hydrateClass);
