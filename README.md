@@ -45,7 +45,8 @@ $hydrateData = [
     '__uncloneableClass:\vendor\Some\Super\Class_someProperty2' => null,
     // unexpected properties of subclass will be ignored
     '__uncloneableClass:\vendor\Some\Super\Class_unknownProperty' => '!undefined',
-    '__stdClass:\stdClass_unknownProperty' => '!undefined',
+    // internal classes cannot be created and injected (in current version)
+    //'__stdClass:\stdClass_unknownProperty' => '!undefined',
 ];
 
 /* @var $object PrivateConstructor */
@@ -66,9 +67,6 @@ class \Namespace\Domain\Entity (5) {
         class \vendor\Some\Super\Class (2) {
             public $someProperty1 => string(7) "value 1"
             public $someProperty2 => NULL
-        }
-    protected $stdClass =>
-        class stdClass (0) {
         }
 }
 ```
