@@ -9,6 +9,7 @@ namespace Sufir\Hydrator;
 
 use Closure;
 use ReflectionObject;
+use ReflectionClass;
 use Sufir\Hydrator\Instantiator;
 use InvalidArgumentException;
 
@@ -52,7 +53,7 @@ class PlainArrayHydrator implements HydratorInterface
             $selfProperties[$class['property']] = $this->hydrate($properties, $class['class']);
         }
 
-        $hydrate = $this->getBindClosure($className);
+        $hydrate = $this->getHydrator($className);
         $hydrate($object, $selfProperties);
 
         return $object;
@@ -123,14 +124,30 @@ class PlainArrayHydrator implements HydratorInterface
         ];
     }
 
-    protected function getBindClosure($className)
+    protected function getHydrator($className)
     {
-        return Closure::bind(function ($object, $data) {
-            foreach ($data as $property => $value) {
-                if (property_exists($object, $property)) {
-                    $object->{$property} = $value;
+        $reflection = new ReflectionClass($className);
+
+        if($reflection->isUserDefined()) {
+            return Closure::bind(function ($object, $data) {
+                foreach ($data as $property => $value) {
+                    if (property_exists($object, $property)) {
+                        $object->{$property} = $value;
+                    }
                 }
-            }
-        }, null, $className);
+            }, null, $className);
+        } else {
+            return function ($object, $data) {
+                $reflection = new ReflectionObject($object);
+
+                foreach ($data as $propertyName => $value) {
+                    if ($reflection->hasProperty($propertyName)) {
+                        $property = $reflection->getProperty($propertyName);
+                        $property->setAccessible(true);
+                        $property->setValue($object, $value);
+                    }
+                }
+            };
+        }
     }
 }

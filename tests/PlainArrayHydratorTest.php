@@ -13,7 +13,7 @@ use Sufir\Hydrator\Test\Asset\UncloneableClass;
 use stdClass;
 use Sufir\Hydrator\Test\Asset\PrivateConstructor;
 
-class PlainPropertysHydratorTest extends \PHPUnit_Framework_TestCase
+class PlainArrayHydrator extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Hydrator
@@ -52,12 +52,6 @@ class PlainPropertysHydratorTest extends \PHPUnit_Framework_TestCase
 
         /* @var $object PrivateConstructor */
         $object = $this->hydrator->hydrate($data, $this->hydrateClass);
-
-        echo "\n\n\n";
-        var_dump($object);
-        echo "\n\n\n";
-
-
 
         $this->assertInstanceOf($this->hydrateClass, $object);
 
