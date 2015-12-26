@@ -23,7 +23,8 @@ interface HydratorInterface
     /**
      * Наполняет объект $object данными представленными в $data.
      * <br>
-     * Если в $object вместо объекта передано имя класса, объект будет создан.
+     * Если в $object вместо объекта
+     * передано имя класса, объект будет создан.
      *
      * @param array $data
      * @param object|string $object

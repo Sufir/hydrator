@@ -106,7 +106,8 @@ class PlainArrayHydrator implements HydratorInterface
         $parts = explode(":", $className, 2);
         if (count($parts) !== 2) {
             throw new InvalidArgumentException(
-                "Wrong property and type definition {$className}, must in format «__propertyName:SubClassName» or «__propertyName:\ClassName»"
+                "Wrong property and type definition {$className},"
+                . "must in format «__propertyName:SubClassName» or «__propertyName:\ClassName»"
             );
         }
 
