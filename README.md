@@ -1,10 +1,10 @@
 # sufir/hydrator
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/sufir/hydrator.svg?style=flat-square)](https://packagist.org/packages/sufir/hydrator)
-[![Build Status](https://img.shields.io/travis/sufir/hydrator/master.svg?style=flat-square)](https://travis-ci.org/sufir/hydrator)
-[![Quality Score](https://img.shields.io/scrutinizer/g/sufir/hydrator.svg?style=flat-square)](https://scrutinizer-ci.com/g/sufir/hydrator/?branch=master)
+[![Build Status](https://img.shields.io/travis/sufir/hydrator/master.svg?style=flat-square)](https://travis-ci.org/Sufir/hydrator)
+[![Quality Score](https://img.shields.io/scrutinizer/g/sufir/hydrator.svg?style=flat-square)](https://scrutinizer-ci.com/g/Sufir/hydrator/?branch=master)
 ![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)
-[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/sufir/hydrator.svg?style=flat-square)](https://scrutinizer-ci.com/g/sufir/hydrator/code-structure)
+[![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/sufir/hydrator.svg?style=flat-square)](https://scrutinizer-ci.com/g/Sufir/hydrator/code-structure)
 [![Issues](https://img.shields.io/github/issues/Sufir/hydrator.svg?style=flat-square)](https://github.com/Sufir/hydrator/issues)
 
 ## Install
