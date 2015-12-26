@@ -52,6 +52,7 @@ final class Instantiator implements InstantiatorInterface
 
     /**
      *
+     * @param string $className
      * @return ReflectionClass
      * @throws InvalidArgumentException
      */
