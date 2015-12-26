@@ -33,8 +33,8 @@ final class Instantiator implements InstantiatorInterface
      */
     public function newInstance($className)
     {
-        if (isset(static::$prototypesCache[$className])) {
-            return clone static::$prototypesCache[$className];
+        if (isset(self::$prototypesCache[$className])) {
+            return clone self::$prototypesCache[$className];
         }
 
         $reflection = $this->getReflection($className);
@@ -42,9 +42,9 @@ final class Instantiator implements InstantiatorInterface
         $object = $reflection->newInstanceWithoutConstructor();
 
         if ($this->isCloneable($reflection)) {
-            static::$prototypesCache[$className] = clone $object;
+            self::$prototypesCache[$className] = clone $object;
         } else {
-            static::$reflectionsCache[$className] = $reflection;
+            self::$reflectionsCache[$className] = $reflection;
         }
 
         return $object;
@@ -58,8 +58,8 @@ final class Instantiator implements InstantiatorInterface
      */
     private function getReflection($className)
     {
-        if (isset(static::$reflectionsCache[$className])) {
-            return static::$reflectionsCache[$className];
+        if (isset(self::$reflectionsCache[$className])) {
+            return self::$reflectionsCache[$className];
         }
 
         if (!class_exists($className)) {
