@@ -9,6 +9,7 @@ namespace Sufir\Hydrator;
 
 use InvalidArgumentException;
 use ReflectionClass;
+
 /**
  * InstantiatorInterface
  *
@@ -24,7 +25,7 @@ final class Instantiator implements InstantiatorInterface
      */
     private static $reflectionsCache = array();
     /**
-     * @var object[] Объекты, которые могут быть клонированы. Клонирование быстрее создания нового объекта.
+     * @var object[] Объекты, которые могут быть клонированы
      */
     private static $prototypesCache = array();
 

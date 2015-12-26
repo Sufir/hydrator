@@ -1,5 +1,11 @@
 # sufir/hydrator
 
+[![Latest Version on Packagist][https://img.shields.io/packagist/v/sufir/hydrator.svg?style=flat-square]][link-packagist]
+[![Build Status][https://img.shields.io/travis/sufir/hydrator/master.svg?style=flat-square]][link-travis]
+[![Quality Score][https://img.shields.io/scrutinizer/g/sufir/hydrator.svg?style=flat-square]][https://scrutinizer-ci.com/g/sufir/hydrator/?branch=master]
+[![Software License][https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square]]
+[![Coverage Status][https://img.shields.io/scrutinizer/coverage/g/sufir/hydrator.svg?style=flat-square]][https://scrutinizer-ci.com/g/sufir/hydrator/code-structure]
+
 ## Install
 
 Via Composer

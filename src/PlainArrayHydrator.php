@@ -11,6 +11,7 @@ use Closure;
 use ReflectionObject;
 use Sufir\Hydrator\Instantiator;
 use InvalidArgumentException;
+
 /**
  * PlainArrayHydrator
  *
@@ -102,7 +103,9 @@ class PlainArrayHydrator implements HydratorInterface
     {
         $parts = explode(":", $className, 2);
         if (count($parts) !== 2) {
-            throw new InvalidArgumentException("Wrong property and type definition {$className}, must in format «__propertyName:SubClassName» or «__propertyName:\ClassName»");
+            throw new InvalidArgumentException(
+                "Wrong property and type definition {$className}, must in format «__propertyName:SubClassName» or «__propertyName:\ClassName»"
+            );
         }
 
         $prop = $parts[0];
@@ -122,7 +125,7 @@ class PlainArrayHydrator implements HydratorInterface
 
     protected function getBindClosure($className)
     {
-        return Closure::bind(function($object, $data) {
+        return Closure::bind(function ($object, $data) {
             foreach ($data as $property => $value) {
                 if (property_exists($object, $property)) {
                     $object->{$property} = $value;

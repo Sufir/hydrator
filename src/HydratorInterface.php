@@ -9,6 +9,7 @@
 namespace Sufir\Hydrator;
 
 use InvalidArgumentException;
+
 /**
  * HydratorInterface
  *
